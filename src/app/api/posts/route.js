@@ -1,6 +1,6 @@
 import db from "@/app/lib/db";
 import Post from "@/app/models/Post";
-import { verifyToken, verifyJwtToken } from "@/app/lib/jwt";
+import { verifyJwtToken } from "@/app/lib/jwt";
 
 async function GET(req) {
   await db.connect();
@@ -22,8 +22,8 @@ async function POST(req) {
 
   if (!accessToken || !decodedToken) {
     return new Response(
-      JSON.stringify({ error: "Unauthorized (wrong or expired token)" }),
-      { status: 403 }
+      JSON.stringify({ message: "Unauthorized (wrong or expired token)" }),
+      { status: 401 }
     );
   }
 

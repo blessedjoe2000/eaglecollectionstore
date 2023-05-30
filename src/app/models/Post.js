@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Admin from "./Admin";
 
 const postSchema = new mongoose.Schema(
   {
@@ -30,7 +29,7 @@ const postSchema = new mongoose.Schema(
     },
     size: {
       sown: { type: String, enum: ["S", "M", "L", "XL"] },
-      shoe: { type: String, enum: [36, 37, 38, 39, 40, 41, 42, 43] },
+      shoe: { type: Number, enum: [36, 37, 38, 39, 40, 41, 42, 43] },
       material: { type: String, enum: ["yard", "cm"] },
     },
     prompt: { type: { String }, enum: ["new", "low", "sale"] },
@@ -39,6 +38,7 @@ const postSchema = new mongoose.Schema(
       require: true,
       ref: "Admin",
     },
+    likes: { type: Number },
   },
   { timestamps: true }
 );
