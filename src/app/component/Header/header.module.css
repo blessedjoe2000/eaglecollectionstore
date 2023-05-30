@@ -1,5 +1,5 @@
 .header {
-  background-color: #000814;
+  background-color: #161a1d;
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .navlist:hover {
-  color: #1e96fc;
+  color: #9b5de5;
   cursor: pointer;
 }
 
