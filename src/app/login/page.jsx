@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./login.module.css";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { signIn } from "next-auth/react";
 
 function Login() {
@@ -35,7 +36,7 @@ function Login() {
       if (response?.error === null) {
         router.push("/");
       } else {
-        toast.error("error occured while logging", error);
+        toast.error("error occured while logging");
       }
       setEmail("");
       setPassword("");
@@ -49,7 +50,9 @@ function Login() {
       <div className="">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">
+            Email:<span className={styles.required}>*</span>
+          </label>
           <input
             type="email"
             name="email"
@@ -59,7 +62,9 @@ function Login() {
               setEmail(e.target.value);
             }}
           />
-          <label htmlFor="">Password:</label>
+          <label htmlFor="">
+            Password:<span className={styles.required}>*</span>
+          </label>
           <input
             type="password"
             name="password"
@@ -69,6 +74,7 @@ function Login() {
               setPassword(e.target.value);
             }}
           />
+
           <button type="submit">Login</button>
         </form>
       </div>
