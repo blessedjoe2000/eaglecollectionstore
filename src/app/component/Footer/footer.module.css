@@ -38,31 +38,52 @@
   padding: 0.5rem 0;
 }
 
-.icon:hover {
-  color: #9b5de5;
-  cursor: pointer;
-}
-
 .social {
   display: flex;
   gap: 1rem;
   padding: 0.5rem 0;
 }
 
-.instagram:hover {
+.icon {
+  color: #9b5de5;
+}
+.instagram {
   color: #ff5d8f;
+}
+
+.whatsapp {
+  color: #06d6a0;
+}
+.facebook {
+  color: #1e96fc;
+}
+.tiktok {
+  color: #fff;
+}
+.snapchat {
+  color: #ffea00;
+}
+.icon:hover {
+  color: #fff;
+  cursor: pointer;
+}
+.instagram:hover {
+  color: #fff;
   cursor: pointer;
 }
 
 .whatsapp:hover {
-  color: #06d6a0;
+  color: #fff;
   cursor: pointer;
 }
 .facebook:hover {
-  color: #1e96fc;
+  color: #fff;
   cursor: pointer;
 }
+.tiktok:hover {
+  color: #9b5de5;
+}
 .snapchat:hover {
-  color: #ffea00;
+  color: #fff;
   cursor: pointer;
 }

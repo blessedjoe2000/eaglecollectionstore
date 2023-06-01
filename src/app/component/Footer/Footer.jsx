@@ -48,13 +48,13 @@ function Footer() {
               <Link href="">
                 <FaFacebook className={styles.facebook} />
               </Link>
-              <Link className={styles.icon} href="">
+              <Link className={styles.tiktok} href="">
                 <FaTiktok />
               </Link>
               <Link href="">
                 <FaSnapchat className={styles.snapchat} />
               </Link>
-              <Link className={styles.icon} href="">
+              <Link className={styles.tiktok} href="">
                 <FaEnvelope />
               </Link>
             </div>
