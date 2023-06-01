@@ -2,7 +2,7 @@ import db from "@/app/lib/db";
 import Post from "@/app/models/Post";
 import { verifyJwtToken } from "@/app/lib/jwt";
 
-async function GET(req) {
+export async function GET(req) {
   await db.connect();
 
   try {
@@ -13,7 +13,7 @@ async function GET(req) {
   }
 }
 
-async function POST(req) {
+export async function POST(req) {
   await db.connect();
 
   const accessToken = req.headers.get("authorization");

@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
-import { CredentialsProvider } from "next-auth/providers";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { signJwtToken } from "@/app/lib/jwt";
 import bcrypt from "bcrypt";
+import db from "@/app/lib/db";
 import Admin from "@/app/models/Admin";
 
 const handler = NextAuth({
@@ -9,12 +10,13 @@ const handler = NextAuth({
     CredentialsProvider({
       type: "credentials",
       credentials: {
-        email: { label: "Email", type: email },
-        password: { label: "Password", type: password },
+        email: { label: "Email", type: " email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
         const { email, password } = credentials;
 
+        await db.connect();
         const admin = await Admin.findOne({ email });
 
         if (!admin) {
@@ -41,16 +43,15 @@ const handler = NextAuth({
   },
   callbacks: {
     async jwt({ token, admin }) {
-      if (!admin) {
-        token.accessToken = user.accessToken;
+      if (admin) {
+        token.accessToken = admin.accessToken;
         token._id = admin._id;
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
-        session.admin._id = token._id;
-        session.admin.accessToken = token.accessToken;
+        session.admin = { _id: token._id, accessToken: token.accessToken };
       }
       return session;
     },

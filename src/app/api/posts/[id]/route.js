@@ -34,9 +34,7 @@ export async function PATCH(req, ctx) {
 
   try {
     const updateBody = await req.json();
-    const post = await Post.findById(id)
-      .populate("adminId")
-      .select("-password");
+    const post = await Post.findById(id).populate("adminId");
 
     if (!post) {
       return new Response(
@@ -73,9 +71,7 @@ export async function DELETE(req, ctx) {
   }
 
   try {
-    const post = await Post.findById(id)
-      .populate("adminId")
-      .select("-password");
+    const post = await Post.findById(id).populate("adminId");
     if (!post) {
       return new Response(
         JSON.stringify({ message: "no post found" }, { status: 403 })
