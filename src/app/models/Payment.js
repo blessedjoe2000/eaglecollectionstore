@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const paymentSchema = new mongoose.Schema(
   {
+    nameOnCard: { type: String, required: true },
     cardNo: { type: String, required: true },
     expiryDate: { type: Date, required: true },
     cvv: { type: String, required: true },
