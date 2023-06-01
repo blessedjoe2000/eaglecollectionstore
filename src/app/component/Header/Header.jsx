@@ -37,7 +37,6 @@ function Header() {
 
       {session?.user ? (
         <div className={styles.nav}>
-          {console.log("session", session)}
           <ul className={styles.navbarlist}>
             <Link href="">
               <li className={styles.navlist}>Shop</li>
