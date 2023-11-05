@@ -65,7 +65,7 @@ export default function Navbar() {
           className={
             showHamburger
               ? "hidden"
-              : "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-main-purple "
+              : "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-main-purple mb-20"
           }
         >
           <button className="px-10 py-3 mb-1 relative ml-auto">

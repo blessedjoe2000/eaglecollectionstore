@@ -14,6 +14,9 @@ module.exports = {
       },
       colors: {
         "main-purple": "#c8b6ff",
+        "sharp-purple": "#7161ef",
+        "main-pink": "#ff99c8",
+        "light-pink": "#feeafa",
       },
     },
   },
