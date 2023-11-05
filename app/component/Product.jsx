@@ -12,8 +12,8 @@ export default function FeaturedProduct({ product }) {
 
   return (
     <div className="flex flex-col xl:1/5 lg:w-1/4  md:w-1/3 sm:w-full  m-5 rounded-sm shadow-lg p-2 bg-white">
-      <Link href={"/product/" + product._id}>
-        <img className="rounded-md" src={product.images[0]} alt="product" />
+      <Link href={"/product/" + product?._id}>
+        <img className="rounded-md" src={product?.images[0]} alt="product" />
       </Link>
 
       <div>
@@ -25,11 +25,11 @@ export default function FeaturedProduct({ product }) {
             ${product.price}
           </p>
         </div>
-        <p className="text-sm ">{product.description}</p>
+        <p className="text-sm ">{product?.description}</p>
       </div>
       <div className="flex gap-2 justify-between mt-2">
         <Link
-          href={"/product/" + product._id}
+          href={"/product/" + product?._id}
           className="bg-transparent border-main-purple text-main-purple border-2 px-2 py-1 rounded-md text-sm"
         >
           Read more

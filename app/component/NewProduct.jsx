@@ -9,37 +9,39 @@ export default function NewProduct({ newProducts }) {
     setAddFavorite(!addFavorite);
   };
   return (
-    <div>
-      <h1>New Products</h1>
-      <div className="flex gap-2">
-        {newProducts.map((product) => (
-          <div className="flex flex-col rounded-sm shadow-lg p-2 bg-white">
-            <Link href={"/product/" + product._id}>
-              <img
-                className="rounded-md"
-                src={product.images[0]}
-                alt="product"
-              />
-            </Link>
+    <div className="mx-5 ">
+      <h1 className=" my-5 text-center text-3xl font-bold text-main-purple">
+        New Products
+      </h1>
+      <div className="flex gap-2 flex-wrap">
+        {newProducts?.map((product) => (
+          <div
+            key={product?._id}
+            className="flex flex-col rounded-sm shadow-lg p-2 bg-white xl:w-1/5 lg:w-1/4  md:w-1/3 sm:w-full"
+          >
+            <div>
+              <Link href={"/product/" + product._id} className="">
+                <img
+                  className="rounded-md "
+                  src={product?.images[0]}
+                  alt="product"
+                />
+              </Link>
+            </div>
 
             <div>
-              <div className="flex gap-2 justify-between items-center my-2">
+              <Link href={"/product/" + product._id}>
                 <h2 className=" font-bold text-2xl text-main-purple">
-                  {product.title}
+                  {product?.title}
                 </h2>
-                <p className="inline-flex justify-end px-2 py-1 bg-main-pink text-white rounded-lg">
-                  ${product.price}
-                </p>
-              </div>
-              <p className="text-sm ">{product.description}</p>
+              </Link>
+
+              <p className="text-sm my-2">{product?.description}</p>
             </div>
             <div className="flex gap-2 justify-between items-center mt-2">
-              <Link
-                href={"/product/" + product._id}
-                className="bg-transparent border-main-purple text-main-purple border-2 px-2 py-1 rounded-md text-sm"
-              >
-                Read more
-              </Link>
+              <p className=" px-2 py-1 bg-main-pink text-white rounded-lg font-bold">
+                ${product?.price}
+              </p>
               <button onClick={toggleFavorite}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
