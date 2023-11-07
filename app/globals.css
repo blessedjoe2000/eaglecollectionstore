@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input,
+textarea,
+select {
+  @apply border border-gray-200 rounded-sm w-full mb-2 p-1;
+  @apply shadow-sm;
+}

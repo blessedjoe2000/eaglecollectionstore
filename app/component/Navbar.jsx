@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Logo from "./Logo";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "./CartContext";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
@@ -10,6 +11,8 @@ export default function Navbar() {
   const toggleHambuger = () => {
     setShowHamburger(!showHamburger);
   };
+
+  const { cartProducts } = useContext(CartContext);
   return (
     <nav className="bg-main-purple text-white flex justify-between items-center gap-5 px-5">
       <div className="py-2">
@@ -21,8 +24,9 @@ export default function Navbar() {
         <Link href={"/"}>Account</Link>
         <Link href={"/"}>Contact</Link>
       </div>
-      <div className="flex gap-2">
-        <Link href={"/"}>
+      <div className="flex gap-2 justify-center items-center">
+        <Link href={"/cart"}>
+          <div>{cartProducts.length}</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -1,3 +1,4 @@
+import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
 import NewProduct from "./component/NewProduct";
 import FeaturedProduct from "./component/Product";
@@ -13,6 +14,7 @@ export default async function Home() {
       <Navbar />
       <FeaturedProduct product={product} />
       <NewProduct newProducts={newProducts} />
+      <Footer />
     </main>
   );
 }

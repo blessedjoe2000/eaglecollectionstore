@@ -1,15 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "./CartContext";
 
 export default function FeaturedProduct({ product }) {
   const [addFavorite, setAddFavorite] = useState("");
+  const { addProduct } = useContext(CartContext);
 
   const toggleFavorite = () => {
     setAddFavorite(!addFavorite);
   };
 
+  const addProductToCart = () => {
+    addProduct(product._id);
+  };
   return (
     <div className="flex flex-col xl:1/5 lg:w-1/4  md:w-1/3 sm:w-full  m-5 rounded-sm shadow-lg p-2 bg-white">
       <Link href={"/product/" + product?._id}>
@@ -50,7 +55,10 @@ export default function FeaturedProduct({ product }) {
             />
           </svg>
         </button>
-        <button className="bg-main-purple border-2 border-main-purple text-white px-2 py-1 rounded-md text-sm flex gap-1 items-center">
+        <button
+          onClick={addProductToCart}
+          className="bg-main-purple border-2 border-main-purple text-white px-2 py-1 rounded-md text-sm flex gap-1 items-center"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

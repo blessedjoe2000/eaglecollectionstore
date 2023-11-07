@@ -1,12 +1,19 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "./CartContext";
 
 export default function NewProduct({ newProducts }) {
   const [addFavorite, setAddFavorite] = useState("");
+  const { addProduct } = useContext(CartContext);
 
   const toggleFavorite = () => {
     setAddFavorite(!addFavorite);
+  };
+
+  const addProductsToCart = (productId) => {
+    console.log("newProducts", productId);
+    addProduct(productId);
   };
   return (
     <div className="mx-5 ">
@@ -60,7 +67,10 @@ export default function NewProduct({ newProducts }) {
                   />
                 </svg>
               </button>
-              <button className="bg-main-purple border-2 border-main-purple text-white px-2 py-1 rounded-md text-sm flex gap-1 items-center">
+              <button
+                onClick={() => addProductsToCart(product._id)}
+                className="bg-main-purple border-2 border-main-purple text-white px-2 py-1 rounded-md text-sm flex gap-1 items-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
