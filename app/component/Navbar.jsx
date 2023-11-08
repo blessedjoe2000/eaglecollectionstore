@@ -26,7 +26,7 @@ export default function Navbar() {
       </div>
       <div className="flex gap-2 justify-center items-center">
         <Link href={"/cart"}>
-          <div>{cartProducts.length}</div>
+          <div>{cartProducts?.length}</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

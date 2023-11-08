@@ -8,3 +8,15 @@ select {
   @apply border border-gray-200 rounded-sm w-full mb-2 p-1;
   @apply shadow-sm;
 }
+
+table {
+  @apply w-full my-5;
+}
+
+table thead tr th {
+  @apply font-bold text-sm uppercase text-left text-main-purple;
+}
+
+table tbody tr td {
+  @apply text-gray-700 py-5 border-t-2 border-light-pink;
+}

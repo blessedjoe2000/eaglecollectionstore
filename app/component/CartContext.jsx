@@ -10,7 +10,6 @@ export function CartContextProvider({ children }) {
 
   useEffect(() => {
     if (cartProducts?.length > 0) {
-      console.log("cartProducts", cartProducts);
       ls?.setItem("cart", JSON.stringify(cartProducts));
     }
   }, [cartProducts]);
@@ -24,8 +23,21 @@ export function CartContextProvider({ children }) {
   const addProduct = (productId) => {
     setCartProducts((prev) => [...prev, productId]);
   };
+
+  const removeProduct = (productId) => {
+    setCartProducts((prev) => {
+      const idPosition = prev.indexOf(productId);
+      if (idPosition !== -1) {
+        return prev.filter((id, index) => index !== idPosition);
+      }
+      return prev;
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct }}>
+    <CartContext.Provider
+      value={{ cartProducts, setCartProducts, addProduct, removeProduct }}
+    >
       {children}
     </CartContext.Provider>
   );

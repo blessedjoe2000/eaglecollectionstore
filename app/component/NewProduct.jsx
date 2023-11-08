@@ -12,7 +12,6 @@ export default function NewProduct({ newProducts }) {
   };
 
   const addProductsToCart = (productId) => {
-    console.log("newProducts", productId);
     addProduct(productId);
   };
   return (
