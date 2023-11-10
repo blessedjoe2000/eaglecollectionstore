@@ -19,6 +19,7 @@ export default function NewProduct({ newProducts }) {
       <h1 className=" my-5 text-center text-3xl font-bold text-main-purple">
         New Products
       </h1>
+
       <div className="flex gap-2 flex-wrap">
         {newProducts?.map((product) => (
           <div

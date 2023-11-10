@@ -20,6 +20,8 @@ export default function page() {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
         setProducts(response.data);
       });
+    } else {
+      setProducts([]);
     }
   }, [cartProducts]);
 
@@ -38,13 +40,44 @@ export default function page() {
     total += price;
   }
 
+  const handleToPayment = async (e) => {
+    e.preventDefault();
+    const response = await axios.post("/api/checkout", {
+      name,
+      email,
+      phone,
+      address,
+      zipCode,
+      country,
+      cartProducts,
+    });
+
+    if (response.data.url) {
+      window.location = response.data.url;
+    }
+  };
+
+  if (window.location.href.includes("success")) {
+    return (
+      <>
+        <Navbar />
+        <div className="bg-white mx-5 text-center py-10 ">
+          <h1 className="font-bold py-2 text-lg">
+            Payment Successful! Thank you for shopping with us.
+          </h1>
+          <p>We will email you when your order is sent.</p>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-2 gap-2 mt-10 mx-5">
-        <div className="bg-white rounded-md p-5">
+      <div className="grid grid-cols-1 gap-2 mt-10 mx-5 sm:grid-cols-2">
+        <div className="bg-white rounded-md p-5 ">
           <h2 className="font-bold mb-3 text-lg text-main-pink">Cart</h2>
-          {!cartProducts?.length && <div>Your Cart is empty</div>}
+          <div>{!cartProducts?.length && <div>Your Cart is empty</div>}</div>
           {products.length > 0 && (
             <table className="table-auto">
               <thead className="">
@@ -63,7 +96,7 @@ export default function page() {
                         src={product.images[0]}
                         alt={`${product.title} image`}
                       />
-                      {product.title}{" "}
+                      <div className="text-main-purple">{product.title}</div>
                     </td>
                     <td className=" ">
                       <button
@@ -109,48 +142,58 @@ export default function page() {
               <h2 className="font-bold mb-3 text-lg text-main-pink">
                 Order information
               </h2>
-
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => e.target.value}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => e.target.value}
-              />
-              <input
-                type="text"
-                placeholder="Phone number"
-                value={phone}
-                onChange={(e) => e.target.value}
-              />
-              <input
-                type="text"
-                placeholder="Address"
-                value={address}
-                onChange={(e) => e.target.value}
-              />
-              <div className="flex gap-2">
+              <form onSubmit={handleToPayment}>
                 <input
                   type="text"
-                  placeholder="Zip code"
-                  value={zipCode}
-                  onChange={(e) => e.target.value}
+                  name="name"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                   type="text"
-                  placeholder="Country"
-                  value={country}
-                  onChange={(e) => e.target.value}
+                  name="phone"
+                  placeholder="Phone number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
-              </div>
-              <button className=" bg-main-pink px-3 py-1 rounded-md text-white text-center">
-                Continue to payment
-              </button>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    name="zipCode"
+                    placeholder="Zip code"
+                    value={zipCode}
+                    onChange={(e) => setZipCode(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    name="country"
+                    placeholder="Country"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className=" bg-main-pink px-3 py-1 rounded-md text-white text-center"
+                >
+                  Continue to payment
+                </button>
+              </form>
             </div>
           )}
         </div>

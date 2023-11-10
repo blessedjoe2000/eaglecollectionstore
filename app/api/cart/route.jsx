@@ -21,7 +21,9 @@ export async function POST(req) {
   try {
     const data = await req.json();
     const ids = data.ids.map((id) => new mongoose.Types.ObjectId(id));
-    const allProducts = await Product.find({ _id: { $in: ids } });
+    const allProducts = await Product.find({ _id: { $in: ids } }).sort({
+      updatedAt: -1,
+    });
 
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {
