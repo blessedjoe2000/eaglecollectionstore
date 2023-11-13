@@ -6,7 +6,8 @@ import { CartContext } from "../component/CartContext";
 import axios from "axios";
 
 export default function page() {
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ export default function page() {
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [country, setCountry] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     if (cartProducts?.length > 0) {
@@ -24,6 +26,17 @@ export default function page() {
       setProducts([]);
     }
   }, [cartProducts]);
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window?.location.href.includes("success")
+    ) {
+      setIsSuccess(true);
+      clearCart();
+      console.log("cartProducts", cartProducts);
+    }
+  }, []);
 
   const increaseQuantity = (id) => {
     addProduct(id);
@@ -57,7 +70,7 @@ export default function page() {
     }
   };
 
-  if (window.location.href.includes("success")) {
+  if (isSuccess) {
     return (
       <>
         <Navbar />
