@@ -31,7 +31,6 @@ export async function getNewProducts() {
   await mongooseConnect();
   const newProducts = await Product.find({}, null, {
     sort: { _id: -1 },
-    limit: 20,
   });
   return JSON.parse(JSON.stringify(newProducts));
 }

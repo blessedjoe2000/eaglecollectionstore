@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 import { CartContext } from "../component/CartContext";
 import axios from "axios";
+import Link from "next/link";
 
 export default function page() {
   const { cartProducts, addProduct, removeProduct, clearCart } =
@@ -34,7 +35,6 @@ export default function page() {
     ) {
       setIsSuccess(true);
       clearCart();
-      console.log("cartProducts", cartProducts);
     }
   }, []);
 
@@ -55,6 +55,11 @@ export default function page() {
 
   const handleToPayment = async (e) => {
     e.preventDefault();
+
+    if (!name || !email || !phone || !address || !zipCode || !country) {
+      console.log("enter required fields");
+      return;
+    }
     const response = await axios.post("/api/checkout", {
       name,
       email,
@@ -78,7 +83,13 @@ export default function page() {
           <h1 className="font-bold py-2 text-lg">
             Payment Successful! Thank you for shopping with us.
           </h1>
-          <p>We will email you when your order is sent.</p>
+          <p className="mb-5">We will email you when your order is sent.</p>
+          <Link
+            href={"/"}
+            className="px-3 py-1 text-white bg-main-pink rounded-md"
+          >
+            Go to shop
+          </Link>
         </div>
       </>
     );

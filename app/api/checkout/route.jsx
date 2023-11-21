@@ -31,7 +31,6 @@ export async function POST(req) {
       );
       const quantity =
         cartProducts.filter((id) => id === productId)?.length || 0;
-      console.log("product quantity", quantity);
       if (quantity && productInfo) {
         line_items.push({
           quantity,
